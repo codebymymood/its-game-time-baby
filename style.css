@@ -1,0 +1,61 @@
+body {
+    background-color: #fcec83;
+    text-align: center;
+   
+    
+}
+
+#intro-page {
+    background: url('./images/splash-screen.jpg') center no-repeat;
+}
+
+#intro-page  div {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.intro-left { 
+    display: flex;
+    flex-direction: column;
+    margin-left: 300px;
+    
+}
+
+.audio {
+    width: 80px;
+    padding-top: 150px;
+    padding-bottom: 150px;
+    padding-left: 50px;
+}
+
+.keys {
+    width: 150px;
+    padding-left: 20px;
+}
+
+.intro-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px
+
+}
+
+.logo {
+   
+   
+}
+
+#player {
+    margin-bottom:20px;
+}
+.start-button {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.intro-right {
+    text-align: right;
+}
