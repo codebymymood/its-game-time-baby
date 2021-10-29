@@ -1,7 +1,7 @@
 # its-game-time-baby
 PokéSanta - collect the good, destroy the bad! 
 
-# Project's name
+# PokéSanta
 [Link Deploy](https://github.com/codebymymood/its-game-time-baby.git)
 
 
