@@ -13,6 +13,9 @@ badPoke.src = './images/bad-pokemon.png'
 let gameOverBack = new Image();
 gameOverBack.src = './images/game-over-background.png'
 
+let winBack = new Image();
+winBack.src = './images/win-over-background.png'
+
 let gameScrBack = new Image();
 gameScrBack.src = './images/game-screen-background.png'
 
@@ -43,11 +46,15 @@ introScr.src = './images/splash-screen.jpg'
 let scoree = new Image();
 scoree.src = './images/score.jpg'
 
+let fire = new Image();
+fire.src = './images/fire-ring.png'
+
 let santaX = 10, santaY = 430;
 let scoreeX = 750, scoreeY = 40;
 let score = 0;
+let gameOver = false;
+let intervalId = 0;
 
-let obstacles = {x: 250, y: 500} // move on with this logic
 
 function beginGame() { //o q acontece quando clicamos no botão start
     introPage.style.display = 'none'; //check how to hide this
@@ -56,17 +63,55 @@ function beginGame() { //o q acontece quando clicamos no botão start
     gameScreen();
 }
 
+let rockX = 300, rockY = 430
+
+let obstacles = [
+    {x: rockX, y: rockY}, 
+    {x: rockX + 600, y: 430}
+]// move on with this logic
+
+
+
+
 function gameScreen() {
 
     ctx.drawImage(gameScrBack, 0, 0);
     ctx.drawImage(santa, santaX, santaY);
-    
+    // ctx.drawImage(rock, 300, 430)
+
+    ctx.drawImage(pokeSanta, 30, 10)
     ctx.drawImage(scoree, scoreeX, scoreeY);
     ctx.font = '28px Verdana'
     ctx.fillText(`Score: ${score}`, 795, 120)
 
+    
+    for ( let i = 0; i < obstacles.length; i++) {
+        let move = 2;
+
+        ctx.drawImage(rock, obstacles[i].x, obstacles[i].y);
+        ctx.drawImage(rock, obstacles[i].x, obstacles[i].y);
+        ctx.drawImage(goodPoke, obstacles[i].x - 80, obstacles[i].y)
+        ctx.drawImage(badPoke, obstacles[i].x + 350, obstacles[i].y)
+        ctx.drawImage(pika, obstacles[i].x + 30, obstacles[i].y - 200 )
+        ctx.drawImage(fire, obstacles[i].x + 10, obstacles[i].y - 228)
+
+        obstacles[i].x = obstacles[i].x - move
+
+        if(obstacles[i].x + rock.width < 0) {
+            obstacles[i].x = 1000;
+        }
 
 
+
+    }
+
+    // if(gameOver) {
+    //     cancelAnimationFrame(intervalId);
+    //     showGameOver(); //to do
+    // }
+    // else {
+    //     intervalId = requestAnimationFrame(gameScreen);
+    // }
 
 }
 
@@ -75,16 +120,29 @@ function gameScreen() {
 
 
 //1st step
-window.addEventListener('load', () => {
-    gameScreen()
-    // canvas.style.display = 'none';
-    // overPage.style.display = 'none'; ---- how to game over page this when loading page?
+window.onload = () => {
+    
+    canvas.style.display = 'none';
+    overPage.style.display = 'none'; //---- how to game over page when loading page?
+    
 
-    startBtn.addEventListener('click', () => { //para gerar reação ao click to botão
-       beginGame();
+    startBut.addEventListener('click', () => { //para gerar reação ao click to botão
+        beginGame(); // not producing effects, why?
     })
 
-})
+    document.addEventListener('keydown', (event) => {
+        if( event.key == 'ArrowUp' ) {
+            isUp = true;
+            isDown = false;
+        }
+        if( event.key == 'spaceBar') {
+            // max jump
+        }
+        if( event.key == 'keyQ') //don't really know if this is the right way
+
+    })
+
+}
 
 
 

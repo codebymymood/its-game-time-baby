@@ -59,3 +59,49 @@ body {
 .intro-right {
     text-align: right;
 }
+
+
+
+
+.over-page {
+    background: url('./images/win-over-background.png') center no-repeat;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-top: 100px;
+}
+
+
+.over-page span {
+    margin-top: -230px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+#restart {
+    width: 100px;
+    color: yellow;
+    border-style:solid;
+    border-color: yellow;
+    border-width: 5px;
+    padding: 10px;
+    margin-right: 30px;
+    margin-bottom: 50px;
+    background-color: blue;
+    border-radius: 50px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+#lvlUp {
+    width: 100px;
+    color: blue;
+    border-style: solid;
+    border-color: blue;
+    border-width: 5px;
+    padding: 10px;
+    margin-left: 30px;
+    background-color: yellow;
+    border-radius: 50px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
