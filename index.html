@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <div id = 'intro-page'>
+        <div id = 'intro-page' style="width: 1038px; height:520px;">
             <div class = 'intro-left'>
                 <img class = 'audio' src = './images/music.png' alt = 'music'/>
                 <br />
@@ -19,13 +19,20 @@
             <div class = 'intro-center'>
                 <img class = 'logo' src = './images/poke-santa.png' alt = 'poke-santa-logo'/>
                 <input id="player" type="text" placeholder="Player name">
-                <button class = 'start-button'>Start Game</button>                
+                <img class = 'start-button' src = './images/start.PNG'/>               
             </div>
 
             <div class = 'intro-right'>
-                <p>Game instructions</p>
+                <h3>Game instructions</h3>
+                
+                <p>Help Santa collect Good Poké (blue ones) and defeat the Bad Pokés while dodging the rocks. Collect a Pika and earn extra points!</p>
+                <h4> Good Luck!</h4>
             </div>
          </div>
+
+         <div id = 'game-page'>
+            <canvas id="myCanvas" width="1001" height="515"></canvas>
+        </div>
 
         
 

@@ -3,7 +3,7 @@ let ctx = canvas.getContext('2d');
 canvas.style.border = '5px solid purple';
 let introPage = document.getElementById('intro-page');
 let overPage = document.getElementsByClassName('over-page');
-let startBut = document.querySelector('start-button') // transição p jogo: 1º definir o q fazer com start button, de seguida crio event listener e função
+let startBut = document.querySelector('.start-button') // transição p jogo: 1º definir o q fazer com start button, de seguida crio event listener e função
 
 
 //images - can i create another page just for these img variables?
@@ -46,14 +46,20 @@ introScr.src = './images/splash-screen.jpg'
 let scoree = new Image();
 scoree.src = './images/score.jpg'
 
-let fire = new Image();
-fire.src = './images/fire-ring.png'
 
 let santaX = 10, santaY = 430;
 let scoreeX = 750, scoreeY = 40;
 let score = 0;
 let gameOver = false;
 let intervalId = 0;
+let isUp = false;
+let isDown = true;
+let maxUp = false;
+let maxDown = true;
+let isGameOver = false;
+let interval = null;
+let randomElement = [rock, goodPoke, badPoke, pika];
+
 
 
 function beginGame() { //o q acontece quando clicamos no botão start
@@ -63,47 +69,116 @@ function beginGame() { //o q acontece quando clicamos no botão start
     gameScreen();
 }
 
-let rockX = 300, rockY = 430
+let rockX = 900, rockY = 430
 
 let obstacles = [
-    {x: rockX, y: rockY}, 
-    {x: rockX + 600, y: 430}
-]// move on with this logic
 
+    {el: rock, x: rockX, y: rockY}, 
+    {el: goodPoke, x: rockX - 80, y: rockY},
+    {el: badPoke, x: rockX + 350 , y: rockY},
+    {el: pika, x: rockX + 30, y: rockY - 200}  
+        
+]
 
 
 
 function gameScreen() {
 
-    ctx.drawImage(gameScrBack, 0, 0);
-    ctx.drawImage(santa, santaX, santaY);
-    // ctx.drawImage(rock, 300, 430)
+    let move = 2;
+    let counter = 1;
+    let i = 0;
 
-    ctx.drawImage(pokeSanta, 30, 10)
-    ctx.drawImage(scoree, scoreeX, scoreeY);
-    ctx.font = '28px Verdana'
-    ctx.fillText(`Score: ${score}`, 795, 120)
+    interval = setInterval(() => {
 
-    
-    for ( let i = 0; i < obstacles.length; i++) {
-        let move = 2;
+        // ++counter;
 
-        ctx.drawImage(rock, obstacles[i].x, obstacles[i].y);
-        ctx.drawImage(rock, obstacles[i].x, obstacles[i].y);
-        ctx.drawImage(goodPoke, obstacles[i].x - 80, obstacles[i].y)
-        ctx.drawImage(badPoke, obstacles[i].x + 350, obstacles[i].y)
-        ctx.drawImage(pika, obstacles[i].x + 30, obstacles[i].y - 200 )
-        ctx.drawImage(fire, obstacles[i].x + 10, obstacles[i].y - 228)
+        ctx.drawImage(gameScrBack, 0, 0);
+            if(isUp) {
+                ctx.drawImage(santa, santaX, santaY - 100); 
+            } 
+            else if(maxUp) {
+                ctx.drawImage(santa, santaX, santaY - 200);
+            }
+            else {
+                ctx.drawImage(santa, santaX, santaY);
+            }
+            // if(maxUp) {
+            //     ctx.drawImage(santa, santaX, santaY - 200);
+            // }
+            // else {
+            //     ctx.drawImage(santa, santaX, santaY);
+            // }
 
-        obstacles[i].x = obstacles[i].x - move
+        ctx.drawImage(pokeSanta, 30, 10)
+        ctx.drawImage(scoree, scoreeX, scoreeY);
+        ctx.font = '28px Verdana'
+        ctx.fillText(`Score: ${score}`, 795, 120)
 
-        if(obstacles[i].x + rock.width < 0) {
-            obstacles[i].x = 1000;
+        // if (counter % 50 === 0) {
+
+        //     let randEl = Math.floor(Math.random() * 4);
+        //     let randXinterval = Math.floor(Math.random() * 200);
+        //     let randX = rockX + 300 + randXinterval;
+        //     let randY = rockY;
+        //     if (randomElement[randEl] === pika) {
+        //         randY -= 200;
+        //         obstacles.push({el: fire, x: randX, y: randY});
+        //     }
+
+        //     obstacles.push({el: randomElement[randEl], x: randX, y: randY});
+
+        // }
+
+        for ( let i = 0; i < obstacles.length; i++) {
+
+            
+            ctx.drawImage(obstacles[i].el, obstacles[i].x, obstacles[i].y);
+            ctx.drawImage(goodPoke, obstacles[i].x - 80, obstacles[i].y)
+            ctx.drawImage(badPoke, obstacles[i].x + 350, obstacles[i].y)
+            ctx.drawImage(pika, obstacles[i].x + 30, obstacles[i].y - 100)
+            
+            obstacles[i].x = obstacles[i].x - move
+
+
+            if(obstacles[i].x + rock.width < 0) {
+                obstacles[i].x = 1000;
+            }
+            // if(obstacles[i].x < 100) {
+            //     obstacles.push({x: rockX + 300, y: 400});
+            // }
+            
+            // if(flying) {   not using this cause it'll just fly away
+            //     santaY -= 2
+            // }
+            // else {
+            //     santaY += 2
+            // }
+
+
+            if(santaY == obstacles[i].x + obstacles[i].y) { //if santa crosses good poke 
+                score++
+            }
+            else if (obstacles[i].x + 30, obstacles[i].y - 100) {
+                score * 10
+            }
+
+            // let pikaCoord = (obstacles[i].x + 30, obstacles[i].y - 200)
+            // if(santaY == pikaCoord) { //if santa crosses pika
+            //     score * 10
+            // }
+
+            if(santaY == (obstacles[i].el, obstacles[i].x, obstacles[i].y)) {
+             isGameOver = true;
+             cancelAnimationFrame(intervalId);
+            //  gameOverScreen();
+            }
+
         }
 
 
+    }, 10);
+    
 
-    }
 
     // if(gameOver) {
     //     cancelAnimationFrame(intervalId);
@@ -123,23 +198,34 @@ function gameScreen() {
 window.onload = () => {
     
     canvas.style.display = 'none';
-    overPage.style.display = 'none'; //---- how to game over page when loading page?
+    // overPage.style.display = 'none'; //---- how to game over page when loading page?
     
 
     startBut.addEventListener('click', () => { //para gerar reação ao click to botão
-        beginGame(); // not producing effects, why?
+        beginGame(); 
     })
 
     document.addEventListener('keydown', (event) => {
+       
         if( event.key == 'ArrowUp' ) {
             isUp = true;
             isDown = false;
         }
-        if( event.key == 'spaceBar') {
-            // max jump
-        }
-        if( event.key == 'keyQ') //don't really know if this is the right way
 
+        // console.log(event.key)
+        if( event.key == ' ') {
+            maxUp = true;
+            maxDown = false;
+        }
+        // if( event.key == 'keyQ') {} //don't really know if this is the right way
+        
+    });
+
+    document.addEventListener('keyup', (event) => {
+        isUp = false;
+        isDown = false;
+        maxUp = false;
+        maxDown = false;
     })
 
 }

@@ -7,6 +7,12 @@ body {
 
 #intro-page {
     background: url('./images/splash-screen.jpg') center no-repeat;
+    position: absolute;
+    width: 1038px;
+    height: 520px;
+    left: calc(50% - (1038px/2));    
+    display: flex; 
+
 }
 
 #intro-page  div {
@@ -16,9 +22,10 @@ body {
 }
 
 .intro-left { 
-    display: flex;
     flex-direction: column;
-    margin-left: 300px;
+    margin-left: 80px;
+    margin-bottom: 150px;
+    width: (1020 / 3)
     
 }
 
@@ -32,36 +39,64 @@ body {
 .keys {
     width: 150px;
     padding-left: 20px;
+    margin-bottom: 70px;
 }
 
 .intro-center {
-    display: flex;
     flex-direction: column;
     align-items: center;
-    width: 300px
+    width: (1020 / 3)
 
 }
 
+.intro-right {
+    width: (1020 / 3)
+}
+
 .logo {
-   
+   margin-top: -100px;
+   margin-bottom: 100px;
    
 }
 
 #player {
-    margin-bottom:20px;
+    margin-bottom:50px;
 }
+
 .start-button {
     display: flex;
     flex-direction: column;
+    width: 100px;
+    
     
 }
 
 .intro-right {
-    text-align: right;
+    background-color: rgba(0,0,0,0.5);
+    width: 200px;
+    height: 300px;
+    border-radius: 40px;
+    margin-top: 100px;
+    margin-left: 50px;    
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    flex-direction: column;
 }
 
+h3 {
+    color: yellow;
+    margin-bottom: -10px;
+}
 
+p {
+    color: white;
+    padding: 20px;
+    margin-top: 30px;
+    margin-bottom: -10px;
+}
 
+h4 {
+    color: #bbd4fc;
+}
 
 .over-page {
     background: url('./images/win-over-background.png') center no-repeat;
