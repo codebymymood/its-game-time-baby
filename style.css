@@ -140,3 +140,10 @@ h4 {
     border-radius: 50px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+#myCanvas {
+    width: 1038px;
+    height: 520px;
+    display: flex;
+    justify-content: center;
+}

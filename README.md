@@ -33,9 +33,8 @@ Pok√©Santa (patent pending, don't rush it!) it's a game where Santa and its pok√
 
 #main.js
 . buildSplashScreen () {}
-. buildGameScreen () {}
-. buildGameOverScreen () {}
-
+. gameScreen () {}
+. gameOverScreen () {}
 
 #game.js
 . addEventListener(){}
@@ -49,22 +48,8 @@ Pok√©Santa (patent pending, don't rush it!) it's a game where Santa and its pok√
 . kill(){}
 . collision
 
-#pikachu.js
-. pika(dimension, positioning){}
-. score increase
-. collision
-
-#rocks.js
-. rocks(dimension, positioning)
-. collision
-
-#badpoke.js
-. badpoke(dimension, positioning)
-. kill (){}
-. collision
-
-#goodpoke.js
-. goodpoke(dimension, positioning)
+#obstacles.js
+. obstacles(dimension, positioning)
 . collision
 
 

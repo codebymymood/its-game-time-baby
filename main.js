@@ -48,19 +48,32 @@ scoree.src = './images/score.jpg'
 
 
 let santaX = 10, santaY = 430;
+let rockX = 900, rockY = 430;
+let goodX = rockX - 80;
+let badX = rockX + 350;
+let pikaX = rockX + 30;
+let pikaY = rockY - 200;
+
 let scoreeX = 750, scoreeY = 40;
 let score = 0;
 let gameOver = false;
+
 let intervalId = 0;
 let isUp = false;
 let isDown = true;
 let maxUp = false;
 let maxDown = true;
+
 let isGameOver = false;
+
+
 let interval = null;
-let randomElement = [rock, goodPoke, badPoke, pika];
+// let randomElement = [rock, goodPoke, badPoke, pika];
 
 
+
+
+// function introScreen()   - take care of player name input & audio button
 
 function beginGame() { //o q acontece quando clicamos no botão start
     introPage.style.display = 'none'; //check how to hide this
@@ -69,14 +82,14 @@ function beginGame() { //o q acontece quando clicamos no botão start
     gameScreen();
 }
 
-let rockX = 900, rockY = 430
+
 
 let obstacles = [
 
     {el: rock, x: rockX, y: rockY}, 
-    {el: goodPoke, x: rockX - 80, y: rockY},
-    {el: badPoke, x: rockX + 350 , y: rockY},
-    {el: pika, x: rockX + 30, y: rockY - 200}  
+    {el: goodPoke, x: goodX, y: rockY},
+    {el: badPoke, x: badX , y: rockY},
+    {el: pika, x: pikaX, y: pikaY}  
         
 ]
 
@@ -92,7 +105,7 @@ function gameScreen() {
 
         // ++counter;
 
-        ctx.drawImage(gameScrBack, 0, 0);
+        ctx.drawImage(gameScrBack, 0, 0); //this makes Santa jump and max jump
             if(isUp) {
                 ctx.drawImage(santa, santaX, santaY - 100); 
             } 
@@ -102,12 +115,7 @@ function gameScreen() {
             else {
                 ctx.drawImage(santa, santaX, santaY);
             }
-            // if(maxUp) {
-            //     ctx.drawImage(santa, santaX, santaY - 200);
-            // }
-            // else {
-            //     ctx.drawImage(santa, santaX, santaY);
-            // }
+               
 
         ctx.drawImage(pokeSanta, 30, 10)
         ctx.drawImage(scoree, scoreeX, scoreeY);
@@ -129,49 +137,46 @@ function gameScreen() {
 
         // }
 
+       
+
         for ( let i = 0; i < obstacles.length; i++) {
 
             
-            ctx.drawImage(obstacles[i].el, obstacles[i].x, obstacles[i].y);
-            ctx.drawImage(goodPoke, obstacles[i].x - 80, obstacles[i].y)
-            ctx.drawImage(badPoke, obstacles[i].x + 350, obstacles[i].y)
-            ctx.drawImage(pika, obstacles[i].x + 30, obstacles[i].y - 100)
+            ctx.drawImage(rock, obstacles[i].x, obstacles[i].y);
+            ctx.drawImage(goodPoke, obstacles[i].x - 80, obstacles[i].y);
+            // ctx.drawImage(badPoke, obstacles[i].x + 350, obstacles[i].y);
+            ctx.drawImage(pika, pikaX, pikaY);
             
-            obstacles[i].x = obstacles[i].x - move
+            obstacles[i].x = obstacles[i].x - move;
+
+            pikaX = pikaX - move;
 
 
-            if(obstacles[i].x + rock.width < 0) {
+            if(obstacles[i].x + rock.width < 0) {  //keep them showing
                 obstacles[i].x = 1000;
             }
-            // if(obstacles[i].x < 100) {
-            //     obstacles.push({x: rockX + 300, y: 400});
-            // }
-            
-            // if(flying) {   not using this cause it'll just fly away
-            //     santaY -= 2
-            // }
-            // else {
-            //     santaY += 2
-            // }
+             
 
-
-            if(santaY == obstacles[i].x + obstacles[i].y) { //if santa crosses good poke 
-                score++
+            if(santaX + santa.width > goodX) { //if santa crosses good poke 
+                score++;
             }
-            else if (obstacles[i].x + 30, obstacles[i].y - 100) {
-                score * 10
-            }
+            // if (santaY == obstacles[i].x + 30, obstacles[i].y - 200) {
+            //     score += 5;
+            // }
 
             // let pikaCoord = (obstacles[i].x + 30, obstacles[i].y - 200)
             // if(santaY == pikaCoord) { //if santa crosses pika
             //     score * 10
             // }
 
-            if(santaY == (obstacles[i].el, obstacles[i].x, obstacles[i].y)) {
+            if(santaY + santa.height >= rockX && rockY) {
              isGameOver = true;
              cancelAnimationFrame(intervalId);
             //  gameOverScreen();
             }
+
+
+                
 
         }
 
@@ -232,9 +237,7 @@ window.onload = () => {
 
 
 
-// CSS COMMENT 
 
-//.intro-page > div ---- need to make 3 main divs align 
-//in 3 inline blocks. CSS is treating it like it's 1 major column
 
-//start button: how to change esthetics
+
+
