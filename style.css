@@ -10,7 +10,7 @@ body {
     position: absolute;
     width: 1038px;
     height: 520px;
-    left: calc(50% - (1038px/2));    
+    /* left: calc(50% - (1038px/2));     */
     display: flex; 
 
 }
@@ -66,7 +66,7 @@ body {
 .start-button {
     display: flex;
     flex-direction: column;
-    width: 100px;
+    width: 125px;
     
     
 }
@@ -100,22 +100,40 @@ h4 {
 
 .over-page {
     background: url('./images/win-over-background.png') center no-repeat;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin-top: 100px;
+    margin-top: 10px;
+    left: calc(50% - (1038px/2));
+    width: 1038px;
+    height: 520px;
+    
+    
+    
 }
 
-
-.over-page span {
+.over-page div {
     margin-top: -230px;
     padding-bottom: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     color: white;
+}
+
+#text {
+    background-color: rgba(0,0,0,0.5);
+    width: 500px;
+    height: 200px;
+    line-height:  1px;
+    border-radius: 40px;
+    margin-top: 100px;
+    margin-left: 50px;    
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    flex-direction: column;
+
 }
 
 #restart {
     width: 100px;
-    color: yellow;
+    /* color: yellow;
     border-style:solid;
     border-color: yellow;
     border-width: 5px;
@@ -124,13 +142,13 @@ h4 {
     margin-bottom: 50px;
     background-color: blue;
     border-radius: 50px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
 
 }
 
 #lvlUp {
     width: 100px;
-    color: blue;
+    /* color: blue;
     border-style: solid;
     border-color: blue;
     border-width: 5px;
@@ -138,7 +156,7 @@ h4 {
     margin-left: 30px;
     background-color: yellow;
     border-radius: 50px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
 }
 
 #myCanvas {
@@ -147,3 +165,4 @@ h4 {
     display: flex;
     justify-content: center;
 }
+

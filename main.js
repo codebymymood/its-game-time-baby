@@ -2,9 +2,9 @@ let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext('2d');
 canvas.style.border = '5px solid purple';
 let introPage = document.getElementById('intro-page');
-let overPage = document.getElementsByClassName('over-page');
+let overPage = document.querySelector('.over-page');
 let startBut = document.querySelector('.start-button') // transição p jogo: 1º definir o q fazer com start button, de seguida crio event listener e função
-
+let restartBut = document.querySelector('#restart');
 
 //images - can i create another page just for these img variables?
 let badPoke = new Image();
@@ -49,10 +49,14 @@ scoree.src = './images/score.jpg'
 
 let santaX = 10, santaY = 430;
 let rockX = 900, rockY = 430;
-let goodX = rockX - 80;
-let badX = rockX + 350;
-let pikaX = rockX + 30;
-let pikaY = rockY - 200;
+// let goodX = rockX - 80;
+// let badX = rockX + 350;
+// let pikaX = rockX + 30;
+// let pikaY = rockY - 200;
+let goodX = 820
+let pikaX = 930
+let pikaY = 230 
+
 
 let scoreeX = 750, scoreeY = 40;
 let score = 0;
@@ -88,7 +92,6 @@ let obstacles = [
 
     {el: rock, x: rockX, y: rockY}, 
     {el: goodPoke, x: goodX, y: rockY},
-    {el: badPoke, x: badX , y: rockY},
     {el: pika, x: pikaX, y: pikaY}  
         
 ]
@@ -97,11 +100,11 @@ let obstacles = [
 
 function gameScreen() {
 
-    let move = 2;
+    let move = 3;
     let counter = 1;
     let i = 0;
 
-    interval = setInterval(() => {
+    
 
         // ++counter;
 
@@ -122,80 +125,84 @@ function gameScreen() {
         ctx.font = '28px Verdana'
         ctx.fillText(`Score: ${score}`, 795, 120)
 
-        // if (counter % 50 === 0) {
-
-        //     let randEl = Math.floor(Math.random() * 4);
-        //     let randXinterval = Math.floor(Math.random() * 200);
-        //     let randX = rockX + 300 + randXinterval;
-        //     let randY = rockY;
-        //     if (randomElement[randEl] === pika) {
-        //         randY -= 200;
-        //         obstacles.push({el: fire, x: randX, y: randY});
-        //     }
-
-        //     obstacles.push({el: randomElement[randEl], x: randX, y: randY});
-
-        // }
-
-       
+              
 
         for ( let i = 0; i < obstacles.length; i++) {
+            if (obstacles[i].el == rock){
+                ctx.drawImage(rock, rockX, rockY)
+                ctx.drawImage(rock, rockX + 300, rockY)
+                rockX -= move
+            }
+            if (obstacles[i].el == goodPoke){
+                ctx.drawImage(goodPoke, goodX, rockY)
+                ctx.drawImage(goodPoke, goodX + 50, rockY)
+                goodX -= move
+            }
+            if (obstacles[i].el == pika){
+                ctx.drawImage(pika, pikaX, pikaY)
+                ctx.drawImage(pika, pikaX + 200, pikaY)
+                pikaX -= move
+            }
 
             
-            ctx.drawImage(rock, obstacles[i].x, obstacles[i].y);
-            ctx.drawImage(goodPoke, obstacles[i].x - 80, obstacles[i].y);
-            // ctx.drawImage(badPoke, obstacles[i].x + 350, obstacles[i].y);
-            ctx.drawImage(pika, pikaX, pikaY);
             
-            obstacles[i].x = obstacles[i].x - move;
+            if(rockX + rock.width < 0) {  //keep them showing
+                rockX = Math.floor(Math.random() * 500) + canvas.width;
+                
+            }
 
-            pikaX = pikaX - move;
+            if(goodX + goodPoke.width < 0) {  //keep them showing
+                goodX = Math.floor(Math.random() * 600) + canvas.width;
+                
+            }
 
-
-            if(obstacles[i].x + rock.width < 0) {  //keep them showing
-                obstacles[i].x = 1000;
+            if(pikaX + pika.width < 0) {  //keep them showing
+                pikaX = Math.floor(Math.random() * 700) + canvas.width;
+                
+            }
+            //collision                 
+            if(santaX + (santa.width -5) > (rockX + 20) && santaX <= rockX + rock.width && (santaY <= rockY  && santaY + santa.height >= rockY + rock.height)) {
+                isGameOver = true;
             }
              
-
-            if(santaX + santa.width > goodX) { //if santa crosses good poke 
+            
+            // increase score
+            if(santaX + santa.width >= goodX && santaX <= goodX + goodPoke.width) { //if santa crosses good poke 
                 score++;
+                goodX = Math.floor(Math.random() * 600) + canvas.width;
             }
-            // if (santaY == obstacles[i].x + 30, obstacles[i].y - 200) {
-            //     score += 5;
-            // }
-
-            // let pikaCoord = (obstacles[i].x + 30, obstacles[i].y - 200)
-            // if(santaY == pikaCoord) { //if santa crosses pika
-            //     score * 10
-            // }
-
-            if(santaY + santa.height >= rockX && rockY) {
-             isGameOver = true;
-             cancelAnimationFrame(intervalId);
-            //  gameOverScreen();
+            if(santaX + santa.width >= pikaX + pika.height && santaX <= pikaX + pika.width) { //if santa crosses good poke 
+                score += 10;
+                pikaX = Math.floor(Math.random() * 600) + canvas.width;
             }
-
-
-                
+                          
 
         }
 
 
-    }, 10);
-    
+        if(isGameOver == false) {
+            intervalId = requestAnimationFrame(gameScreen)
+        }
 
-
-    // if(gameOver) {
-    //     cancelAnimationFrame(intervalId);
-    //     showGameOver(); //to do
-    // }
-    // else {
-    //     intervalId = requestAnimationFrame(gameScreen);
-    // }
+        if(isGameOver) {
+            cancelAnimationFrame(intervalId);
+            showGameOver(); //to do 
+        }
+        
 
 }
 
+function showGameOver(){ // THIS IS URGENT
 
+    if(isGameOver) {
+        // backgroundMusic.pause() -----> take care of this
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        canvas.style.display = 'none'
+        restartBut.style.display = 'block'
+    }
+
+
+}
 
 
 
@@ -203,12 +210,13 @@ function gameScreen() {
 window.onload = () => {
     
     canvas.style.display = 'none';
-    // overPage.style.display = 'none'; //---- how to game over page when loading page?
+    overPage.style.display = 'none';
+    
     
 
     startBut.addEventListener('click', () => { //para gerar reação ao click to botão
         beginGame(); 
-    })
+    });
 
     document.addEventListener('keydown', (event) => {
        
@@ -222,7 +230,7 @@ window.onload = () => {
             maxUp = true;
             maxDown = false;
         }
-        // if( event.key == 'keyQ') {} //don't really know if this is the right way
+        
         
     });
 
@@ -231,13 +239,16 @@ window.onload = () => {
         isDown = false;
         maxUp = false;
         maxDown = false;
-    })
+    });
 
+    restartBut.addEventListener('click', () => {
+        isGameOver = false;
+        // santaX = 10;
+        // score = 0;
+        beginGame();
+        
+    });
 }
 
 
-
-
-
-
-
+// let backgroundMusic = new Audio('./sounds/harrypotter-theme.mp3')
