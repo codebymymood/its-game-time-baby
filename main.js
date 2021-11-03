@@ -3,6 +3,7 @@ let ctx = canvas.getContext('2d');
 canvas.style.border = '5px solid purple';
 let introPage = document.getElementById('intro-page');
 let overPage = document.querySelector('.over-page');
+let winPage = document.querySelector('.win-page');
 let startBut = document.querySelector('.start-button') // transição p jogo: 1º definir o q fazer com start button, de seguida crio event listener e função
 let restartBut = document.querySelector('#restart');
 
@@ -131,34 +132,40 @@ function gameScreen() {
         for ( let i = 0; i < obstacles.length; i++) {
             if (obstacles[i].el == rock){
                 ctx.drawImage(rock, rockX, rockY)
-                // ctx.drawImage(rock, rockX + 300, rockY)
+                ctx.drawImage(rock, rockX + 300, rockY)
+                ctx.drawImage(rock, rockX + 750, rockY)
+                ctx.drawImage(rock, rockX + 1020, rockY)
                 rockX -= move
             }
             if (obstacles[i].el == goodPoke){
                 ctx.drawImage(goodPoke, goodX, rockY)
-                // ctx.drawImage(goodPoke, goodX + 50, rockY)
-                goodX -= move
+                ctx.drawImage(goodPoke, goodX + 150, rockY)
+                ctx.drawImage(goodPoke, goodX + 500, rockY)
+                ctx.drawImage(goodPoke, goodX + 780, rockY)
+                goodX -= move +2
             }
             if (obstacles[i].el == pika){
                 ctx.drawImage(pika, pikaX, pikaY)
-                // ctx.drawImage(pika, pikaX + 200, pikaY)
-                pikaX -= move
+                ctx.drawImage(pika, pikaX + 200, pikaY)
+                ctx.drawImage(pika, pikaX + 200, pikaY)
+                ctx.drawImage(pika, pikaX + 200, pikaY)
+                pikaX -= move +4
             }
 
             
             
             if(rockX + rock.width < 0) {  //keep them showing
-                rockX = Math.floor(Math.random() * 500) + canvas.width;
+                rockX = Math.floor(Math.random() * 1000) + canvas.width;
                 
             }
 
             if(goodX + goodPoke.width < 0) {  //keep them showing
-                goodX = Math.floor(Math.random() * 500) + canvas.width;
+                goodX = Math.floor(Math.random() * 1000) + canvas.width;
                 
             }
 
             if(pikaX + pika.width < 0) {  //keep them showing
-                pikaX = Math.floor(Math.random() * 500) + canvas.width;
+                pikaX = Math.floor(Math.random() * 1000) + canvas.width;
                 
             }
             //collision                 
@@ -172,11 +179,11 @@ function gameScreen() {
             // increase score
             if(santaX + santa.width >= goodX && santaX <= goodX + goodPoke.width) { //if santa crosses good poke 
                 score++;
-                goodX = Math.floor(Math.random() * 600) + canvas.width;  // poke disappears
+                goodX = Math.floor(Math.random() * 1000) + canvas.width;  // poke disappears
             }
             if(santaX + santa.width >= pikaX + pika.height && santaX <= pikaX + pika.width) { //if santa crosses pika 
                 score += 10;
-                pikaX = Math.floor(Math.random() * 600) + canvas.width; // pika disappears
+                pikaX = Math.floor(Math.random() * 1000) + canvas.width; // pika disappears
             }
                           
 
@@ -192,29 +199,37 @@ function gameScreen() {
             showGameOver(); //to do 
         }
         
+        if(score >= 100) {
+            cancelAnimationFrame(intervalId);
+            showWin(); //to do 
+        }
 
 }
 
-function showGameOver(){ // THIS IS URGENT
+function showGameOver(){ 
 
     if(isGameOver) {
         // backgroundMusic.pause() -----> take care of this
         // ctx.clearRect(0, 0, canvas.width, canvas.height)
         canvas.style.display = 'none'
-        overPage.style.display = 'block'
+        overPage.style.display = 'flex'
         
     }
 
 
 }
 
-
+function showWin() {
+    canvas.style.display = 'none'
+    winPage.style.display = 'flex'
+}
 
 //1st step
 window.onload = () => {
     
     canvas.style.display = 'none';
     overPage.style.display = 'none';
+    winPage.style.display = 'none'
     
     
 
@@ -234,8 +249,7 @@ window.onload = () => {
             maxUp = true;
             maxDown = false;
         }
-        
-        
+                
     });
 
     document.addEventListener('keyup', (event) => {
@@ -243,7 +257,7 @@ window.onload = () => {
         isDown = false;
         maxUp = false;
         maxDown = false;
-        santaY = 430
+        santaY = 430  //cuz santa needs to return to basic position
     });
 
     restartBut.addEventListener('click', () => {
