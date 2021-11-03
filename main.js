@@ -44,10 +44,10 @@ let introScr = new Image();
 introScr.src = './images/splash-screen.jpg'
 
 let scoree = new Image();
-scoree.src = './images/score.jpg'
+scoree.src = './images/score.png'
 
 
-let santaX = 10, santaY = 430;
+let santaX = 10, santaY = 440;
 let rockX = 900, rockY = 430;
 // let goodX = rockX - 80;
 // let badX = rockX + 350;
@@ -100,7 +100,7 @@ let obstacles = [
 
 function gameScreen() {
 
-    let move = 3;
+    let move = 5;
     let counter = 1;
     let i = 0;
 
@@ -110,14 +110,15 @@ function gameScreen() {
 
         ctx.drawImage(gameScrBack, 0, 0); //this makes Santa jump and max jump
             if(isUp) {
-                ctx.drawImage(santa, santaX, santaY - 100); 
+                santaY = 330
             } 
             else if(maxUp) {
-                ctx.drawImage(santa, santaX, santaY - 200);
+                santaY = 230
+              
             }
-            else {
-                ctx.drawImage(santa, santaX, santaY);
-            }
+           
+            ctx.drawImage(santa, santaX, santaY);
+            
                
 
         ctx.drawImage(pokeSanta, 30, 10)
@@ -130,17 +131,17 @@ function gameScreen() {
         for ( let i = 0; i < obstacles.length; i++) {
             if (obstacles[i].el == rock){
                 ctx.drawImage(rock, rockX, rockY)
-                ctx.drawImage(rock, rockX + 300, rockY)
+                // ctx.drawImage(rock, rockX + 300, rockY)
                 rockX -= move
             }
             if (obstacles[i].el == goodPoke){
                 ctx.drawImage(goodPoke, goodX, rockY)
-                ctx.drawImage(goodPoke, goodX + 50, rockY)
+                // ctx.drawImage(goodPoke, goodX + 50, rockY)
                 goodX -= move
             }
             if (obstacles[i].el == pika){
                 ctx.drawImage(pika, pikaX, pikaY)
-                ctx.drawImage(pika, pikaX + 200, pikaY)
+                // ctx.drawImage(pika, pikaX + 200, pikaY)
                 pikaX -= move
             }
 
@@ -152,28 +153,30 @@ function gameScreen() {
             }
 
             if(goodX + goodPoke.width < 0) {  //keep them showing
-                goodX = Math.floor(Math.random() * 600) + canvas.width;
+                goodX = Math.floor(Math.random() * 500) + canvas.width;
                 
             }
 
             if(pikaX + pika.width < 0) {  //keep them showing
-                pikaX = Math.floor(Math.random() * 700) + canvas.width;
+                pikaX = Math.floor(Math.random() * 500) + canvas.width;
                 
             }
             //collision                 
-            if(santaX + (santa.width -5) > (rockX + 20) && santaX <= rockX + rock.width && (santaY <= rockY  && santaY + santa.height >= rockY + rock.height)) {
+            if(santaX + (santa.width -5) > (rockX + 20) && santaX <= rockX + rock.width && (santaY >= rockY && santaY + santa.height <= rockY + rock.height  )) {
                 isGameOver = true;
             }
              
-            
+            //+ rock.height
+
+
             // increase score
             if(santaX + santa.width >= goodX && santaX <= goodX + goodPoke.width) { //if santa crosses good poke 
                 score++;
-                goodX = Math.floor(Math.random() * 600) + canvas.width;
+                goodX = Math.floor(Math.random() * 600) + canvas.width;  // poke disappears
             }
-            if(santaX + santa.width >= pikaX + pika.height && santaX <= pikaX + pika.width) { //if santa crosses good poke 
+            if(santaX + santa.width >= pikaX + pika.height && santaX <= pikaX + pika.width) { //if santa crosses pika 
                 score += 10;
-                pikaX = Math.floor(Math.random() * 600) + canvas.width;
+                pikaX = Math.floor(Math.random() * 600) + canvas.width; // pika disappears
             }
                           
 
@@ -196,9 +199,10 @@ function showGameOver(){ // THIS IS URGENT
 
     if(isGameOver) {
         // backgroundMusic.pause() -----> take care of this
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        // ctx.clearRect(0, 0, canvas.width, canvas.height)
         canvas.style.display = 'none'
-        restartBut.style.display = 'block'
+        overPage.style.display = 'block'
+        
     }
 
 
@@ -239,12 +243,13 @@ window.onload = () => {
         isDown = false;
         maxUp = false;
         maxDown = false;
+        santaY = 430
     });
 
     restartBut.addEventListener('click', () => {
         isGameOver = false;
-        // santaX = 10;
-        // score = 0;
+        santaX = 10;
+        score = 0;
         beginGame();
         
     });

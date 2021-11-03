@@ -100,22 +100,14 @@ h4 {
 
 .over-page {
     background: url('./images/win-over-background.png') center no-repeat;
-    margin-top: 10px;
+    margin-top: 10px; 
     left: calc(50% - (1038px/2));
-    width: 1038px;
+    width: 1020px;
     height: 520px;
-    
-    
-    
-}
-
-.over-page div {
-    margin-top: -230px;
-    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: white;
+   
 }
 
 #text {
@@ -124,15 +116,20 @@ h4 {
     height: 200px;
     line-height:  1px;
     border-radius: 40px;
-    margin-top: 100px;
+    margin-top: 200px;
     margin-left: 50px;    
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     flex-direction: column;
 
 }
+.buttons {
+    flex-direction: row;
+    justify-content: space-evenly;
+}
 
 #restart {
     width: 100px;
+    
     /* color: yellow;
     border-style:solid;
     border-color: yellow;
@@ -148,6 +145,7 @@ h4 {
 
 #lvlUp {
     width: 100px;
+    
     /* color: blue;
     border-style: solid;
     border-color: blue;
@@ -162,7 +160,7 @@ h4 {
 #myCanvas {
     width: 1038px;
     height: 520px;
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
 }
 
