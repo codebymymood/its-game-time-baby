@@ -32,35 +32,30 @@ Pok√©Santa (patent pending, don't rush it!) it's a game where Santa and its pok√
 #index.html
 
 #main.js
-. buildSplashScreen () {}
-. gameScreen () {}
-. gameOverScreen () {}
+- window.onload()
+    - addEventListener:
+        - start button;
+        - reset button;
+        - event key: keyUp & keyDown;
 
-#game.js
-. addEventListener(){}
-. animation(){}
-. score
-. game over condition 
-
-#santa.js
-. santa(dimension, positioning){}
-. jump(){}
-. kill(){}
-. collision
-
-#obstacles.js
-. obstacles(dimension, positioning)
-. collision
-
+- obstacles []
+- beginGame()
+- gameScreen():
+    . canvas movement
+    . character movement
+    . collision
+    . score increase
+- showGameOver()
+- showWin()
 
 
 ## States y States Transitions
 Definition of the different states and their transition (transition functions) - how to change screens, DOM
 
-- splashScreen - shows input for players to log their name, keys, description & start game
-- gameScreen - Santa in a sleight that moves vertically
-- gameoverScreen - shows final score and restart button
-- winScreen - unsure at this point
+- splashScreen - shows input for players to log their name, explains key use, description of the game & start game button
+- gameScreen - Santa in a sleight that moves vertically, dodges rocks and collects good pokemons and pikachus
+- gameoverScreen - shows sarcastic motivational quote and restart button
+- winScreen - shows final score and level up button (not working in this version)
 
 
 ## Task
@@ -75,27 +70,6 @@ Definition of the different states and their transition (transition functions) -
 . build gamescreen
 . build gameoverscreen
 
-#game
-. functions
-
-#santa
-. functions
-
-#rocks
-. functions
-
-#pikachu
-. functions
-
-#badpoke
-. functions
-
-#goodpoke
-. functions
-
-. add music
-. backlogs
-
 
 ## Additional Links
 
@@ -105,4 +79,4 @@ Definition of the different states and their transition (transition functions) -
 
 
 ### Slides
-[Link Slides.com](https://1drv.ms/p/s!AsXsOMZ6ab3llU_uPxsc-zJ2MoC_?e=4a6YFF)
+[Link Slides.com](https://1drv.ms/p/s!AsXsOMZ6ab3llU_uPxsc-zJ2MoC_?e=N5KeA9)
