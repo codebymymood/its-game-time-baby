@@ -10,6 +10,9 @@ let restartBut = document.getElementById('restart');
 let finalScore = document.getElementById('final-score');
 let stopAudio = document.querySelector('.audio');
 
+let playerId;
+let playerName = document.getElementById('player-name');
+
 
 
 let gameScrBack = new Image();
@@ -52,9 +55,10 @@ let move = 2;
 let interval = null;
 let santaX = 10, santaY = 440;
 let rockX = 900, rockY = 430;
-let goodX = 820
-let pikaX = 930
-let pikaY = 230 
+let goodX = 820, goodY = 330;
+let pikaX = 930;
+let pikaY = 230;
+
 
 let backgroundMusic = new Audio('./audio/background-music.mp3');
 let pointsMusic = new Audio('./audio/points-audio.mp3');
@@ -62,13 +66,14 @@ let overMusic = new Audio('./audio/over-sound.mp3');
 let winMusic = new Audio('./audio/win-sound.mp3'); 
 let gameMusic = new Audio('./audio/game-sound.mp3');
 
+
 let obstacles = [
 
     {el: rock, x: rockX, y: rockY}, 
     {el: rock, x:  + 300, y: rockY}, 
     {el: rock, x: rockX + 750, y: rockY},
     {el: rock, x: rockX + 1020, y: rockY}, 
-    {el: goodPoke, x: goodX, y: rockY},
+    {el: goodPoke, x: goodX, y: goodY},
     {el: goodPoke, x: goodX + 150, y: rockY},
     {el: goodPoke, x: goodX + 500, y: rockY},
     {el: goodPoke, x: goodX + 780, y: rockY},
@@ -90,8 +95,6 @@ const beginGame = () => {
     gameMusic.play();
 
     gameScreen();
-    
-    
     
 }
 
@@ -121,7 +124,7 @@ const gameScreen = () => {
         for ( let i = 0; i < obstacles.length; i++) {
             if (obstacles[i].el == rock){
                 ctx.drawImage(rock, rockX, rockY)
-                rockX -= move
+                rockX -= move -1
             }
             if (obstacles[i].el == goodPoke){
                 ctx.drawImage(goodPoke, goodX, rockY)
@@ -190,7 +193,7 @@ const showGameOver = () => {
         backgroundMusic.pause();
         gameMusic.pause();
         overMusic.play()
-        overMusic.volume = 0.5;
+        overMusic.volume = 0.2;
         // ctx.clearRect(0, 0, canvas.width, canvas.height)
         canvas.style.display = 'none'
         overPage.style.display = 'flex'
@@ -208,6 +211,7 @@ const showWin = () => {
     gameMusic.pause();
     winMusic.play()
     winMusic.volune = 0.5;
+    playerName.innerHTML = playerId;
     finalScore.innerHTML = score;
 
 }
@@ -218,18 +222,19 @@ window.onload = () => {
     canvas.style.display = 'none';
     overPage.style.display = 'none';
     winPage.style.display = 'none';
-    backgroundMusic.play();
-    backgroundMusic.volume = 0.2;
+    
     
     
 
-    startBut.addEventListener('click', () => { //para gerar reação ao click to botão
+    startBut.addEventListener('click', () => { 
+        playerId = document.getElementById('player-name').value;
         beginGame(); 
     });
 
     stopAudio.addEventListener('click', () => {
-       console.log('isworking')
-        backgroundMusic.pause()
+       backgroundMusic.play();
+       backgroundMusic.volume = 0.2;
+       
     })
 
     document.addEventListener('keydown', (event) => {
@@ -239,7 +244,7 @@ window.onload = () => {
             isDown = false;
         }
 
-        // console.log(event.key)
+        
         if( event.key == ' ') {
             maxUp = true;
             maxDown = false;
@@ -256,7 +261,6 @@ window.onload = () => {
     });
 
     restartBut.addEventListener('click', () => {
-        console.log("clicked") 
         santaX = 10;
         score = 0;
         rockX = 900;

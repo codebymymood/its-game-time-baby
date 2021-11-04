@@ -138,6 +138,7 @@ h4 {
 #lvlUp {
     width: 150px;
     margin-left: 20;
+    
        
 }
 
@@ -164,8 +165,9 @@ h4 {
 #final-score {
     background: blue;
     flex-direction: column;
-    margin-top: 280px;
+    margin-top: 20px;
     margin-left: 5px;
+    margin-bottom: 30px;
     color: yellow;
     border-radius: 50px;
     font-weight: bolder;
@@ -173,8 +175,17 @@ h4 {
     border-color:yellow;
     padding: 10px;
     padding-left: 20px;
-    padding-right: 20px;
+    padding-right: 25px;
     font-size: 30px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    box-shadow: 10px 10px 5px yellow;
 
+}
+
+#player-name {
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-top: 250px;
+    font-weight: bolder;
+    font-size: 30px;
 }
