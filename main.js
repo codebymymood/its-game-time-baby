@@ -8,7 +8,7 @@ let winPage = document.querySelector('.win-page');
 let startBut = document.querySelector('.start-button');
 let restartBut = document.getElementById('restart');
 let finalScore = document.getElementById('final-score');
-let stopAudio = document.getElementsByClassName('audio');
+let stopAudio = document.querySelector('.audio');
 
 
 
@@ -60,6 +60,7 @@ let backgroundMusic = new Audio('./audio/background-music.mp3');
 let pointsMusic = new Audio('./audio/points-audio.mp3');
 let overMusic = new Audio('./audio/over-sound.mp3');
 let winMusic = new Audio('./audio/win-sound.mp3'); 
+let gameMusic = new Audio('./audio/game-sound.mp3');
 
 let obstacles = [
 
@@ -85,6 +86,9 @@ const beginGame = () => {
     introPage.style.display = 'none'; 
     canvas.style.display = 'block';
     startBut.style.display = 'none';
+    backgroundMusic.pause();
+    gameMusic.play();
+
     gameScreen();
     
     
@@ -93,7 +97,8 @@ const beginGame = () => {
 
 
 const gameScreen = () => {
-   
+
+    
         ctx.drawImage(gameScrBack, 0, 0); //this makes Santa jump and max jump
             if(isUp) {
                 santaY = 330
@@ -220,9 +225,10 @@ window.onload = () => {
         beginGame(); 
     });
 
-    // stopAudio.addEventListener('click', () => {
-    //     backgroundMusic.pause()
-    // })
+    stopAudio.addEventListener('click', () => {
+       console.log('isworking')
+        backgroundMusic.pause()
+    })
 
     document.addEventListener('keydown', (event) => {
        
