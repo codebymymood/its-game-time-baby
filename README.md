@@ -13,19 +13,19 @@ Pok√©Santa (patent pending, don't rush it!) it's a game where Santa and its pok√
 
 
 ## MVP
-. game has a character that moves vertically
-. rocks are obstacles and will end game
-. collect good pokemons to increase score
-. pikatchu collect increases score by 10 points
-. wins if score reaches 100 points
-. win page allows to reach for level up button
+- game has a character that moves vertically
+- rocks are obstacles and will end game
+- collect good pokemons to increase score
+- pikatchu collect increases score by 10 points
+- wins if score reaches 100 points
+- win page allows to reach for level up button
 
 
 ## Backlog
-. sound on / off - check
-. input button for player name - check
-. Santa starting in platform - future version
-. level up button - check
+- sound on / off - check
+- input button for player name - check
+- Santa starting in platform - future version
+- level up button - check
 
 
 ## Data structure
@@ -53,9 +53,8 @@ Pok√©Santa (patent pending, don't rush it!) it's a game where Santa and its pok√
 
 
 ## States y States Transitions
-Definition of the different states and their transition (transition functions) - how to change screens, DOM
 
-- splashScreen - shows input for players to log their name, explains key use, description of the game & start game button
+- introScreen - shows input for players to log their name, explains key use, description of the game & start game button
 - gameScreen - Santa in a sleight that moves vertically, dodges rocks and collects good pokemons and pikachus
 - gameoverScreen - shows sarcastic motivational quote and restart button
 - winScreen - shows final score and level up button (not working in this version)
@@ -63,15 +62,15 @@ Definition of the different states and their transition (transition functions) -
 
 ## Task
 
-. create html & css files
-. load all images
+- create html & css files
+- load all images
 
 #main
-. build DOM
-. build splashscreen
-. event listeners
-. build gamescreen
-. build gameoverscreen
+- build DOM
+- build splashscreen
+- event listeners
+- build gamescreen
+- build gameoverscreen
 
 
 ## Additional Links
@@ -82,4 +81,4 @@ Definition of the different states and their transition (transition functions) -
 
 
 ### Slides
-[Link Slides.com](https://1drv.ms/p/s!AsXsOMZ6ab3llU_uPxsc-zJ2MoC_?e=N5KeA9)
+[ PokeSanta_Presentation](https://1drv.ms/p/s!AsXsOMZ6ab3llU_uPxsc-zJ2MoC_?e=N5KeA9)
