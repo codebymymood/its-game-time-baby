@@ -46,7 +46,7 @@ let maxDown = true;
 
 let isGameOver = false;
 
-let move = 8;
+let move = 4;
 let interval = null;
 let santaX = 10, santaY = 440;
 let rockX = 900, rockY = 430;
@@ -55,15 +55,24 @@ let pikaX = 930
 let pikaY = 230 
 
 let backgroundMusic = new Audio('./audio/background-music.mp3');
-let pointsMusic = new Audio();
-let overMusic = new Audio();
-let winMusic = new Audio(); 
+let pointsMusic = new Audio('./audio/points-audio.mp3');
+let overMusic = new Audio('./audio/over-sound.mp3');
+let winMusic = new Audio('./audio/win-sound.mp3'); 
 
 let obstacles = [
 
     {el: rock, x: rockX, y: rockY}, 
+    {el: rock, x:  + 300, y: rockY}, 
+    {el: rock, x: rockX + 750, y: rockY},
+    {el: rock, x: rockX + 1020, y: rockY}, 
     {el: goodPoke, x: goodX, y: rockY},
-    {el: pika, x: pikaX, y: pikaY}  
+    {el: goodPoke, x: goodX + 150, y: rockY},
+    {el: goodPoke, x: goodX + 500, y: rockY},
+    {el: goodPoke, x: goodX + 780, y: rockY},
+    {el: pika, x: pikaX, y: pikaY},
+    {el: pika, x: pikaX + 200, y: pikaY},
+    {el: pika, x: pikaX + 400, y: pikaY},
+    {el: pika, x: pikaX + 850, y: pikaY}  
         
 ]
 
@@ -103,29 +112,21 @@ const gameScreen = () => {
         for ( let i = 0; i < obstacles.length; i++) {
             if (obstacles[i].el == rock){
                 ctx.drawImage(rock, rockX, rockY)
-                // ctx.drawImage(rock, rockX + 300, rockY)
-                // ctx.drawImage(rock, rockX + 750, rockY)
-                // ctx.drawImage(rock, rockX + 1020, rockY)
                 rockX -= move
             }
             if (obstacles[i].el == goodPoke){
                 ctx.drawImage(goodPoke, goodX, rockY)
-                // ctx.drawImage(goodPoke, goodX + 150, rockY)
-                // ctx.drawImage(goodPoke, goodX + 500, rockY)
-                // ctx.drawImage(goodPoke, goodX + 780, rockY)
                 goodX -= move +2
             }
             if (obstacles[i].el == pika){
-                ctx.drawImage(pika, pikaX, pikaY)
-                // ctx.drawImage(pika, pikaX + 200, pikaY)
-                // ctx.drawImage(pika, pikaX + 200, pikaY)
-                // ctx.drawImage(pika, pikaX + 200, pikaY)
+                ctx.drawImage(pika, pikaX, pikaY) 
                 pikaX -= move +4
             }
                   
             
             if(rockX + rock.width < 0) {  //keep them showing
-                rockX = Math.floor(Math.random() * 50) + canvas.width;   
+                rockX = Math.floor(Math.random() * 50) + canvas.width;
+                   
             }
 
             if(goodX + goodPoke.width < 0) {  //keep them showing
@@ -147,10 +148,12 @@ const gameScreen = () => {
             if(santaX + santa.width >= goodX && santaX <= goodX + goodPoke.width) { //if santa crosses good poke 
                 score++;
                 goodX = Math.floor(Math.random() * 1000) + canvas.width;  // poke disappears
+                pointsMusic.play();
             }
             if(santaX + santa.width >= pikaX + pika.height && santaX <= pikaX + pika.width) {  
                 score += 10;
                 pikaX = Math.floor(Math.random() * 1000) + canvas.width; 
+                pointsMusic.play();
             }           
 
         }
@@ -175,7 +178,9 @@ const gameScreen = () => {
 const showGameOver = () => { 
 
     if(isGameOver) {
-        // backgroundMusic.pause() -----> take care of this
+        backgroundMusic.pause()
+        overMusic.play()
+        overMusic.volume = 0.5;
         // ctx.clearRect(0, 0, canvas.width, canvas.height)
         canvas.style.display = 'none'
         overPage.style.display = 'flex'
@@ -186,8 +191,11 @@ const showGameOver = () => {
 }
 
 const showWin = () => {
-    canvas.style.display = 'none'
-    winPage.style.display = 'flex'
+    canvas.style.display = 'none';
+    winPage.style.display = 'flex';
+    backgroundMusic.pause();
+    winMusic.play()
+    winMusic.volune = 0.5;
 }
 
 //1st step
@@ -197,7 +205,7 @@ window.onload = () => {
     overPage.style.display = 'none';
     winPage.style.display = 'none';
     backgroundMusic.play();
-    backgroundMusic.volume = 1;
+    backgroundMusic.volume = 0.5;
     
     
 
@@ -225,27 +233,18 @@ window.onload = () => {
         isDown = false;
         maxUp = false;
         maxDown = false;
-        santaY = 430  //cuz santa needs to return to basic position
+        santaY = 430 //santa needs to go back to its initial position
     });
 
     restartBut.addEventListener('click', () => {
-        console.log("clicked")
-        // overPage.style.display = 'none';
-        // ctx.clearRect(0, 0, canvas.width, canvas.height)
+        console.log("clicked") 
         santaX = 10;
         score = 0;
-        obstacles = [
-            {el: rock, x: rockX, y: rockY}, 
-            {el: goodPoke, x: goodX, y: rockY},
-            {el: pika, x: pikaX, y: pikaY}  
-        ]
-        isGameOver = false;
-        
-        
+        rockX = 900;
+        isGameOver = false;        
         beginGame();
         
     });
 }
 
 
-// let backgroundMusic = new Audio('./sounds/harrypotter-theme.mp3')
