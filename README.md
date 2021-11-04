@@ -6,23 +6,25 @@ PokéSanta - collect the good, destroy the bad!
 
 
 ## Description
-PokéSanta (patent pending, don't rush it!) it's a game where Santa and its pokédeer go around the snowy mountains to collect good pokemons, defeat the bad ones and save Christmas, by offering good Pokémons to all the children!
+PokéSanta (patent pending, don't rush it!) it's a game where Santa and its pokédeer go around the snowy mountains to collect good pokemons, dodge assassin rocks and save Christmas, by offering good Pokémons to all the children!
+
+## Screenshots
+<img width = '450px' height = '200px' src = 'images/intro-screenshot.PNG'> <img width = '450px' height = '200px' src = 'images/game-screenshot.PNG'> <img width = '450px' height = '200px' src = 'images/over-screenshot.PNG'> <img width = '450px' height = '200px' src = 'images/win-screenshot.PNG'>
 
 
 ## MVP
-. game has a Santa in a sleight that moves vertically
-. rocks and bad pokemons are obstacles and will end game
-. kill bad pokemons
+. game has a character that moves vertically
+. rocks are obstacles and will end game
 . collect good pokemons to increase score
-. pikatchu collect increases score by 25poits
+. pikatchu collect increases score by 10 points
 . increase dificulty
 
 
 ## Backlog
-. sound on / off
-. input button for player name
-. Santa starting in platform
-. level up button ? not sure
+. sound on / off - check
+. input button for player name - check
+. Santa starting in platform - future version
+. level up button - check
 
 
 ## Data structure
