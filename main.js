@@ -227,7 +227,7 @@ window.onload = () => {
     
 
     startBut.addEventListener('click', () => { 
-        playerId = document.getElementById('player-name').value;
+        playerId = document.getElementById('player').value;
         beginGame(); 
     });
 
