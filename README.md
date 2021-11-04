@@ -17,7 +17,8 @@ Pok√©Santa (patent pending, don't rush it!) it's a game where Santa and its pok√
 . rocks are obstacles and will end game
 . collect good pokemons to increase score
 . pikatchu collect increases score by 10 points
-. increase dificulty
+. wins if score reaches 100 points
+. win page allows to reach for level up button
 
 
 ## Backlog
