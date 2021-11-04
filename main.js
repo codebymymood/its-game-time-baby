@@ -187,7 +187,8 @@ const gameScreen = () => {
 const showGameOver = () => { 
 
     if(isGameOver) {
-        backgroundMusic.pause()
+        backgroundMusic.pause();
+        gameMusic.pause();
         overMusic.play()
         overMusic.volume = 0.5;
         // ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -204,6 +205,7 @@ const showWin = () => {
     canvas.style.display = 'none';
     winPage.style.display = 'flex';
     backgroundMusic.pause();
+    gameMusic.pause();
     winMusic.play()
     winMusic.volune = 0.5;
     finalScore.innerHTML = score;
