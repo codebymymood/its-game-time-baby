@@ -7,6 +7,8 @@ let winPage = document.querySelector('.win-page');
 
 let startBut = document.querySelector('.start-button');
 let restartBut = document.getElementById('restart');
+let finalScore = document.getElementById('final-score');
+let stopAudio = document.getElementsByClassName('audio');
 
 
 
@@ -46,7 +48,7 @@ let maxDown = true;
 
 let isGameOver = false;
 
-let move = 4;
+let move = 2;
 let interval = null;
 let santaX = 10, santaY = 440;
 let rockX = 900, rockY = 430;
@@ -107,6 +109,8 @@ const gameScreen = () => {
         ctx.drawImage(scoree, scoreeX, scoreeY);
         ctx.font = '28px Verdana'
         ctx.fillText(`Score: ${score}`, 795, 120)
+        
+        
    
 
         for ( let i = 0; i < obstacles.length; i++) {
@@ -190,12 +194,15 @@ const showGameOver = () => {
 
 }
 
+
 const showWin = () => {
     canvas.style.display = 'none';
     winPage.style.display = 'flex';
     backgroundMusic.pause();
     winMusic.play()
     winMusic.volune = 0.5;
+    finalScore.innerHTML = score;
+
 }
 
 //1st step
@@ -205,13 +212,17 @@ window.onload = () => {
     overPage.style.display = 'none';
     winPage.style.display = 'none';
     backgroundMusic.play();
-    backgroundMusic.volume = 0.5;
+    backgroundMusic.volume = 0.2;
     
     
 
     startBut.addEventListener('click', () => { //para gerar reação ao click to botão
         beginGame(); 
     });
+
+    // stopAudio.addEventListener('click', () => {
+    //     backgroundMusic.pause()
+    // })
 
     document.addEventListener('keydown', (event) => {
        
