@@ -2,7 +2,7 @@
 PokéSanta - collect the good, destroy the bad! 
 
 # PokéSanta
-[Link Deploy](https://github.com/codebymymood/its-game-time-baby.git)
+[Link Deploy](https://codebymymood.github.io/its-game-time-baby/)
 
 
 ## Description
