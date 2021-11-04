@@ -9,7 +9,7 @@ PokéSanta - collect the good, destroy the bad!
 PokéSanta (patent pending, don't rush it!) it's a game where Santa and its pokédeer go around the snowy mountains to collect good pokemons, dodge assassin rocks and save Christmas, by offering good Pokémons to all the children!
 
 ## Screenshots
-<img width = '450px' height = '200px' src = 'images/intro-screenshot.PNG'> <img width = '450px' height = '200px' src = 'images/game-screenshot.PNG'> <img width = '450px' height = '200px' src = 'images/over-screenshot.PNG'> <img width = '450px' height = '200px' src = 'images/win-screenshot.PNG'>
+<img width = '300px' height = '150px' src = './images/intro-screenshot.PNG'> <img width = '300px' height = '150px' src = './images/game-screenshot.PNG'> <img width = '300px' height = '150px' src = './images/over-screenshot.PNG'> <img width = '300px' height = '150px' src = './images/win-screenshot.PNG'>
 
 
 ## MVP
