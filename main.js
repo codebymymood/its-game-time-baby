@@ -128,11 +128,11 @@ const gameScreen = () => {
             }
             if (obstacles[i].el == goodPoke){
                 ctx.drawImage(goodPoke, goodX, rockY)
-                goodX -= move +2
+                goodX -= move +1
             }
             if (obstacles[i].el == pika){
                 ctx.drawImage(pika, pikaX, pikaY) 
-                pikaX -= move +4
+                pikaX -= move +2
             }
                   
             
@@ -180,7 +180,7 @@ const gameScreen = () => {
             showGameOver(); //to do 
         }
         
-        if(score >= 100) {
+        if(score >= 300) {
             cancelAnimationFrame(intervalId);
             showWin(); //to do 
         }
